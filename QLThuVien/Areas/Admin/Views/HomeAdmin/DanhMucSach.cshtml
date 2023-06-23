@@ -1,0 +1,74 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using QLThuVien.Models
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Sach>
+
+@{
+    ViewData["Title"] = "DanhMucSach";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>Danh Mục Sách</h1>
+<hr />
+<p class="text-danger">@TempData["Message"]</p>
+<p class="mb-2">
+    <a asp-action="ThemMoiSach"><i class="bi bi-plus-circle"></i>Thêm mới sách</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                Tên Sách
+            </th>
+            <th>
+                Tác Giả
+            </th>
+            <th>
+                Thể Loại
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string clas = "table-sucess";
+        }
+        @foreach (var item in Model)
+        {
+            clas = "table-success";
+            i++;
+            if (i % 2 == 0)
+            {
+                clas = "table-warning";
+            }
+            <tr class="@clas">
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TacGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaTheLoaiNavigation.TenTheLoai)
+                </td>
+                <td>
+                    <a asp-action="SuaSanPham" asp-route-masach="@item.MaSach"><i class="bi bi-pencil-square"></i>Sửa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    @Html.PagedListPager(Model,page => Url.Action("DanhMucSach", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+    LiElementClasses = new List<String> {"page-item mr-1"},
+    PageClasses = new List<String> {"mt-3 mb-3 page-link"}})
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('a[data-confirm]').click(function (e) {
+        if (!confirm($(this).data('confirm'))) {
+            e.preventDefault();
+        }
+    });
+</script>

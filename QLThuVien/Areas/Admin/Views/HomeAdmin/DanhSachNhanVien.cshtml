@@ -1,0 +1,87 @@
+﻿@model IEnumerable<QLThuVien.Models.NhanVien>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "DanhSachNhanVien";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    var username = httpContextAccessor.HttpContext.Session.GetString("Username");
+}
+<p class="text-danger">@TempData["Message"]</p>
+<p class="mb-2">
+    <a asp-controller="AccountAdmin" asp-action="AddAccount"><i class="bi bi-plus-circle"></i> Thêm mới tài  khoản</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                User Name
+            </th>
+            <th>
+                Họ Tên
+            </th>
+            <th>
+                Giới Tính
+            </th>
+            <th>
+                Quê Quán
+            </th>
+            <th>
+                Số Điện Thoại
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string clas = "table-sucess";
+        }
+        @foreach (var item in Model)
+        {
+            clas = "table-success";
+            i++;
+            if (i % 2 == 0)
+            {
+                clas = "table-warning";
+            }
+            <tr class="@clas"> 
+                <td>
+                    @Html.DisplayFor(modelItem => item.UsernameNavigation.Username)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNhanVien)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GioiTinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Que)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sdt)
+                </td>
+
+                <td>
+                    @*@if(username)*@
+                    <a asp-controller="AccountAdmin" asp-action="XoaNhanVien" asp-route-manhanvien="@item.MaNhanVien" data-confirm="Bạn có chắc chắn muốn xóa nhân viên này không?" class="delete-sach"><i class="bi bi-trash3"></i>Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $('a[data-confirm]').click(function (e) {
+        if (!confirm($(this).data('confirm'))) {
+            e.preventDefault();
+        }
+    });
+</script>
+@*@if (TempData["Err"] != null && TempData["Err"] != "")
+{
+    <script>
+        alert('@TempData["Err"]');
+    </script>
+}*@

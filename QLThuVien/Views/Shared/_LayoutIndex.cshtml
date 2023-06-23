@@ -1,0 +1,261 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    var username = httpContextAccessor.HttpContext.Session.GetString("Username");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>UTC's Library</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" type="text/css" href="../Library/css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="../Library/icomoon/icomoon.css">
+    <link rel="stylesheet" type="text/css" href="../Library/css/vendor.css">
+    <link rel="stylesheet" type="text/css" href="../Library/css/style.css">
+
+     
+    <link rel="stylesheet" type="text/css" href="../Library/css/bg.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+ 
+    <style>
+        .dropbtn {
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+            .dropdown a:hover {
+                border-radius: 10px;
+                background-color: #E3AB9A;
+            }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: none;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 10px;
+        }
+
+            .dropdown-content a {
+                color: black;
+                margin: 2px;
+                padding: 10px 10px;
+                text-decoration: none;
+                display: block;
+                background-color: #F3F2EC;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #E3AB9A;
+                    border-radius: 10px;
+                }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+    <!-- script
+    ================================================== -->
+    <script src="../Library/js/modernizr.js"></script>
+</head>
+
+<body>
+    @await Html.PartialAsync("_PartialHeader")
+
+    <!--header-wrap-->
+
+    @RenderBody()
+
+    <section id="latest-blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-header align-center">
+                        <div class="title">
+                            <h2 class="section-title">Social Events</h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <article class="column" data-aos="fade-up">
+                                    <figure>
+                                        <a href="https://lib.utc.edu.vn" class="image-hvr-effect">
+                                            <img src="../ImagesUrl/ThuVien.jpg" alt="post" class="post-image">
+                                        </a>
+                                        
+                                    </figure>
+                                    <div class="post-item">
+                                        <div class="meta-date">Mar 30, 2021</div>
+                                        <h3><a href="https://lib.utc.edu.vn">Thư viện GTVT</a></h3>
+
+                                        <div class="links-element">
+                                            <div class="categories">inspiration</div>
+                                            <div class="social-links">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-facebook"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-twitter"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-behance-square"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div><!--links-element-->
+
+                                    </div>
+                                </article>
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <article class="column" data-aos="fade-down">
+                                    <figure>
+                                        <a href="https://tcsj.utc.edu.vn" class="image-hvr-effect">
+                                            <img src="../ImagesUrl/tapchi-khoahoc-gtvt.png" alt="post" class="post-image">
+                                        </a>
+
+                                        
+                                    </figure>
+                                    <div class="post-item">
+                                        <div class="meta-date">Mar 29, 2021</div>
+                                        <h3><a href="https://tcsj.utc.edu.vn">Tạp chí khoa học GTVT</a></h3>
+
+                                        <div class="links-element">
+                                            <div class="categories">inspiration</div>
+                                            <div class="social-links">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-facebook"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-twitter"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-behance-square"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div><!--links-element-->
+
+                                    </div>
+                                </article>
+
+                            </div>
+                            <div class="col-md-4">
+
+                                <article class="column" data-aos="fade-up">
+                                    <figure>
+                                        <a href="#" class="image-hvr-effect">
+                                            <img src="../ImagesUrl/LichCongTac.png" alt="post" class="post-image">
+                                        </a>
+                                    </figure>
+                                    <div class="post-item">
+                                        <div class="meta-date">Feb 27, 2021</div>
+                                        <h3><a href="#">Lịch công tác</a></h3>
+
+                                        <div class="links-element">
+                                            <div class="categories">inspiration</div>
+                                            <div class="social-links">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-facebook"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-twitter"></i></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="icon icon-behance-square"></i></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </article>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="btn-wrap align-center">
+                                <a href="#" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">Read All Articles<i class="icon icon-ns-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @await Html.PartialAsync("_PartialFooter")
+
+    <div id="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>© 2022 All rights reserved. Free HTML Template by <a href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a></p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="social-links align-right">
+                                    <ul>
+                                        <li>
+                                            <a href="#"><i class="icon icon-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-youtube-play"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="icon icon-behance-square"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--grid-->
+                </div><!--footer-bottom-content-->
+            </div>
+        </div>
+    </div>
+
+    <script src="../Library/js/jquery-1.11.0.min.js"></script>
+    <script src="../Library/js/plugins.js"></script>
+    <script src="../Library/js/script.js"></script>
+
+</body>
+</html>	

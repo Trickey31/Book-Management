@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TheLoai>
+
+<ul style="list-style:none; display:flex; justify-content:center;gap: 0 40px;font-size:20px;font-weight:600;margin: 0;flex-wrap:wrap;">
+	@foreach (var item in Model)
+	{
+		var getUrl = "https://localhost:7143/api/sachapi/" + item.MaTheLoai;
+		<li><a style="cursor:pointer" class="active" onclick="showSachByTheLoai('@getUrl')">@item.TenTheLoai</a></li>
+		@*<li><a asp-controller="Home" asp-action="SachTheoLoai" asp-route-maloai="@item.MaTheLoai">@item.TenTheLoai</a></li>*@
+	}
+</ul>
+<script>
+	function showSachByTheLoai(getUrl) {
+		var str = "";
+		$.ajax({
+			type: "GET",
+			url: getUrl,
+			dataType: "json",
+			success: function (data) {
+				$.each(data, function (key, value) {
+					str += `
+							<div class="col-md-3 ">
+								<figure class="product-style">
+									<img src="../ImagesBook/${value.tenFileAnhDd}" alt="Books" class="product-item" style="height:350px">
+
+									<figcaption>
+										<a href="/Home/ChiTietSach?masach=${value.maSach}" style="text-decoration: none;">
+											<h3 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;">${value.tenSach}</h3>
+											<p>${value.tacGia}</p>
+										</a>
+									</figcaption>
+								</figure>
+							</div>
+						`
+				});
+				$("#displaySach").html(str);
+			},
+			Error: function (xhr) {
+				alert(xhr.responseText);
+			}
+		});
+	}
+</script>

@@ -1,0 +1,13 @@
+﻿@model Sach
+
+<div class="col-md-3">
+	<figure class="product-style">
+		<img src="@Url.Content("../ImagesBook/" + Model.TenFileAnhDd)" alt="Books" class="product-item" style="height:350px">
+		<figcaption>
+			<a asp-controller="Home" asp-action="ChiTietSach" asp-route-masach="@Model.MaSach" style="text-decoration: none;">
+				<h3>@Model.TenSach</h3>
+				<p>@Model.TacGia</p>
+			</a>
+		</figcaption>
+	</figure>
+</div>

@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "SachTheoLoai";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+
+
+@model List<Sach>
+
+
+<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="colored">
+					<h1 class="page-title">Shop</h1>
+					<div class="breadcum-items">
+						<div class="btn-wrap">
+							<a href="@Url.Action("Index")" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">
+								<i class="bi bi-arrow-left"></i> Home
+							</a>
+						</div>
+
+
+					</div>
+
+				</div>
+			</div>
+
+			<div class="col-lg-8 ">
+				<div class="menu">
+					<div class="menu-all">
+						<i class="fa fa-bars"></i>
+						<button class="btn au-btn--blue">All departments</button>
+					</div>
+					<div class="menu-content">
+						@await Component.InvokeAsync("LoaiSpMenu")
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+	</div>
+</div><!--site-banner-->
+
+
+
+<section id="popular-books" class="bookshelf">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+
+				@foreach (var item in Model)
+				{
+					<div class="tab-content">
+						<div class="col-md-3 ">
+							<figure class="product-style">
+								@*<img src="../ImagesBook/@item.TenFileAnhDd" alt="Books" class="product-item">*@
+								<img src=@Url.Content("../ImagesBook/" +@item.TenFileAnhDd ) alt="Books" class="product-item" style="height:350px">
+
+								<button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to Cart</button>
+								<figcaption>
+									<a asp-controller="Home" asp-action="ChiTietSach" asp-route-masach="@item.MaSach" style="text-decoration: none;">
+										<h3 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"> @item.TenSach</h3>
+
+										<p>@item.TacGia</p>
+									</a>
+
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				}
+			@*	<div>
+					@Html.PagedListPager(Model,page => Url.Action("Index", new {page=page}),new X.PagedList.Web.Common.PagedListRenderOptions(){
+					LiElementClasses = new List<String> {"page-item"},
+					PageClasses = new List<String> {"page-link"}
+					})
+				</div>*@
+
+
+			</div><!--inner-tabs-->
+
+		</div>
+
+	</div>
+</section>
+

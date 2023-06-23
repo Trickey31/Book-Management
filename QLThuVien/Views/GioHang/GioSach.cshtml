@@ -1,0 +1,148 @@
+﻿@{
+    ViewData["Title"] = "GioSach";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@inject IHttpContextAccessor httpContextAccessor
+@{
+    var username = httpContextAccessor.HttpContext.Session.GetString("Username");
+}
+@model List<Sach>
+
+<div class="cart-table-area section-padding-0-100">
+    <div class="container-fluid">
+        <div class="col-14 col-lg-8">
+            <div class="cart-title mt-50">
+                <h2>Danh sách mượn</h2>
+            </div>
+            <div class="row">
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>Tên sách</th>
+                                <th>Tình trạng</th>
+                                <th>Thời gian mượn</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width: 10px; flex: none;">
+                                    <span>1</span>
+                                </td>
+                                <td class="cart_product_img">
+                                    <a href="#"><img src="../ImagesBook/bi-vo.jpg" alt="Product" style="height:150px;width:150px"></a>
+                                </td>
+                                <td class="cart_product_desc">
+                                    <h5>Bi Vo</h5>
+                                </td>
+                                <td class="price">
+                                    <span>99%</span>
+                                </td>
+                                <td class="qty">
+                                    <div class="qty-btn d-flex">
+                                        <div class="quantity">
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        </div>
+                                        <p>Ngày</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 10px; flex: none;">
+                                    <span>2</span>
+                                </td>
+                                <td class="cart_product_img">
+                                    <a href="#"><img src="../ImagesBook/bi-vo.jpg" alt="Product" style="height:150px;width:150px"></a>
+                                </td>
+                                <td class="cart_product_desc">
+                                    <h5>Bi Vo</h5>
+                                </td>
+                                <td class="price">
+                                    <span>99%</span>
+                                </td>
+                                <td class="qty">
+                                    <div class="qty-btn d-flex">
+                                        <div class="quantity">
+                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                                        </div>
+                                        <p>Ngày</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            @*@{
+                            var i = 0;
+                            }
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                            <td style="width: 10px; flex: none;">
+                            <span>(@i)</span>
+                            </td>
+                            <td class="cart_product_img">
+                            <a href="#"><img src="@Url.Content("../ImagesBook/" + item.TenFileAnhDd)" alt="Product"></a>
+                            </td>
+                            <td class="cart_product_desc">
+                            <h5>@item.TenSach</h5>
+                            </td>
+                            <td class="price">
+                            <span>99%</span>
+                            </td>
+                            <td class="qty">
+                            <div class="qty-btn d-flex">
+                            <div class="quantity">
+                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
+                            </div>
+                            <p>Ngày</p>
+                            </div>
+                            </td>
+                            <td>
+                            <a class="btn btn-danger">Xóa</a>
+                            </td>
+                            </tr>
+                            i++;
+                            @if (i == 4) break;
+                            }*@
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-14 col-lg-4">
+            <div class="cart-summary">
+                <h2>Thông tin mượn sách</h2>
+                <ul class="summary-table" style="list-style:none">
+                    <li style="display:flex;gap:0 20px;"><span>Người mượn:</span> <span>@username</span></li>
+                    <li><span>Số lượng:</span> <span>@Model.Count()</span></li>
+                    <li><span>Ngày mượn:</span> <div id="current-time"></div></li>
+                    <li>
+                        @*<ul class="col-11" style="text-align: left;">
+                        @{
+                        var curDate = DateTime.Now;
+                        var borrowDate = curDate.AddDays(Model.Count);
+                        }
+                        @foreach (var item in Model)
+                        {
+                        <li>@(i + 1)<span style="left: 0;">@item.TenSach</span> <div>@borrowDate.ToShortDateString()</div></li>
+                        borrowDate = borrowDate.AddDays(-1);
+                        i++;
+                        }
+                        </ul>*@
+                    </li>
+                </ul>
+                <div class="cart-btn mt-50 btn-center">
+                    <a href="cart.html" class="btn amado-btn w-100 align-center">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewData["Title"] = "HienSanPham";
+    Layout = "~/Views/Shared/_LayoutIndex.cshtml";
+}
+@using QLThuVien.Models
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<Sach>
+
+<div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4">
+				<div class="colored">
+					<h1 class="page-title">Shop</h1>
+					<div class="breadcum-items">
+						<div class="btn-wrap" style="margin-bottom:16px;">
+							<a href="@Url.Action("Index")" class="btn btn-outline-accent btn-accent-arrow" tabindex="0">
+								<i class="bi bi-arrow-left"></i> Home 
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-8 ">
+				<div class="menu">
+					<div class="menu-all">
+						<i class="fa fa-bars"></i>
+						<button>All departments</button>
+					</div>
+					<div class="menu-content">
+						@await Component.InvokeAsync("LoaiSpMenu")
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div></div><!--site-banner-->
+
+
+
+<section id="popular-books" class="bookshelf">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12" id="displaySach">
+				@foreach (var item in Model)
+				{
+					<div class="col-md-3 ">
+						<figure class="product-style">
+							<img src=@Url.Content("../ImagesBook/" +@item.TenFileAnhDd ) alt="Books" class="product-item" style="height:350px">
+
+							<figcaption>
+								<a asp-controller="Home" asp-action="ChiTietSach" asp-route-maSach="@item.MaSach" style="text-decoration: none;">
+									<h3 style="white-space: nowrap; overflow: hidden;text-overflow: ellipsis;"> @item.TenSach</h3>
+
+									<p>@item.TacGia</p>
+								</a>
+
+							</figcaption>
+						</figure>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="~/Library/dropdown-menu/owl.carousel.min.js"></script>
+<script src="~/Library/dropdown-menu/main.js"></script>
+
+
+

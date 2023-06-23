@@ -1,0 +1,65 @@
+﻿@*@model IEnumerable<QLThuVien.Models>*@
+@model IList<QLThuVien.Models.Sach>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "TimKiem";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Kết quả tìm kiếm sách về : ' @ViewBag.TenCanTim '</h1>
+<hr />
+@if (Model.Count == 0)
+{
+    <p>Không tìm thấy</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr class="table-primary">
+                <th>
+                    Tên Sách
+                </th>
+                <th>
+                    Tác Giả
+                </th>
+                <th>
+                    Thể Loại
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int i = 0;
+                string clas = "table-sucess";
+            }
+            @foreach (var item in Model)
+            {
+                clas = "table-success";
+                i++;
+                if (i % 2 == 0)
+                {
+                    clas = "table-warning";
+                }
+                <tr class="@clas">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenSach)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TacGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MaTheLoaiNavigation.TenTheLoai)
+                    </td>
+                    <td>
+                        <a asp-action="SuaSanPham" asp-route-masach="@item.MaSach"><i class="bi bi-pencil-square"></i>Sửa</a> |
+                        <a asp-action="XoaSach" asp-route-masach="@item.MaSach" data-confirm="Bạn có chắc chắn muốn xóa sách này không?" class="delete-sach"><i class="bi bi-trash3"></i>Xóa</a> |
+                        <a asp-action="Details" asp-route-id="@item.MaSach"><i class="bi bi-ticket-detailed"></i>Chi tiết</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+

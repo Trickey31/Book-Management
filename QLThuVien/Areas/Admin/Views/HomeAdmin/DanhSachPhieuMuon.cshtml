@@ -1,0 +1,86 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using QLThuVien.Models
+@using QLThuVien.Models.ProfileAndLichSuViewModels
+@model ProfileAndLichSuViewModel
+
+@{
+    ViewData["Title"] = "DanhMucSach";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>Danh Sách Phiếu Mượn</h1>
+<hr />
+<table class="table">
+    <thead>
+        <tr class="table-primary">
+            <th>
+                Mã Phiếu Mượn
+            </th>
+            <th>
+                Tên Sách
+            </th>
+            <th>
+                Người Mượn
+            </th>
+            <th>
+                Ngày Mượn
+            </th>
+            <th>Ngày Hẹn Trả</th>
+            <th>Tình Trạng</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int i = 0;
+            string clas = "table-sucess";
+        }
+        @foreach (var item in Model.LichSuMuon)
+        {
+            clas = "table-success";
+            i++;
+            if (i % 2 == 0)
+            {
+                clas = "table-warning";
+            }
+            <tr class="@clas">
+                <td>
+                    @Html.DisplayFor(modelItem => item.maPhieuMuon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tenSach)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nguoiMuon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngayMuon)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ngayHenTra)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tinhTrang)
+                </td>
+                @if (item.tinhTrang != "Đã Trả")
+                {
+                    <td>
+                        @using (Html.BeginForm("TraSach", "HomeAdmin", new { @MaPhieuMuon = item.maPhieuMuon }))
+                        {
+                           <button class="text-danger" type="submit" name="add-to-cart" value="27545" data-confirm ="Sách này đã được trả?" class="button">Đã trả</button>
+                        }
+                    </td>
+                } @if (item.tinhTrang == "Đã Trả")
+                {
+                    <td></td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
+<script>
+    $('button[data-confirm]').click(function (e) {
+        if (!confirm($(this).data('confirm'))) {
+            e.preventDefault();
+        }
+    });
+</script>
